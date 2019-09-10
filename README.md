@@ -1,5 +1,7 @@
 # happy thomas
 
+Demo: [https://happy-thomas.firebaseapp.com/](https://happy-thomas.firebaseapp.com/)
+
 ## Project setup
 
 ```bash
