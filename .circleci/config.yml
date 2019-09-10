@@ -1,0 +1,49 @@
+version: 2
+jobs:
+  deploy: # Job name
+    docker:
+      - image: circleci/node:12.9.1
+    steps:
+      - checkout # Checkout source code
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Build production
+          command: yarn run build
+      - run:
+          name: Deploy to Firebase Hosting
+          command: yarn -s run firebase deploy --token="$FIREBASE_TOKEN"
+  bump:
+    docker:
+      - image: circleci/node:12.9.1
+    steps:
+      - checkout
+      - run:
+          name:
+          command: |
+            VERSION=`node -e "console.log(require('./package.json').version)"`
+            if git rev-parse "v${VERSION}" > dev/null 2>&1
+            then
+              git tag -a "v${VERSION}"
+            else
+              exit 1
+            fi
+
+workflows:
+  version: 2
+  deploy: # Name of workflow
+    jobs:
+      - deploy: # Name of job
+          filters:
+            branches:
+              only: master
