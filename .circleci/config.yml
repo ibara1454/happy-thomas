@@ -21,8 +21,11 @@ jobs:
           name: Build production
           command: yarn run build
       - run:
+          name: Install Firebase tools
+          command: yarn global add firebase-tools
+      - run:
           name: Deploy to Firebase Hosting
-          command: yarn -s run firebase deploy --token="$FIREBASE_TOKEN"
+          command: firebase deploy --token="$FIREBASE_TOKEN"
   bump:
     docker:
       - image: circleci/node:12.9.1
