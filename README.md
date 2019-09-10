@@ -1,5 +1,7 @@
 # happy thomas
 
+[![CircleCI](https://circleci.com/gh/ibara1454/happy-thomas/tree/master.svg?style=shield&circle-token=fadbebb1d07af84616bdd726e58ed738603148f2)](https://circleci.com/gh/ibara1454/happy-thomas/tree/master)
+
 Demo: [https://happy-thomas.firebaseapp.com/](https://happy-thomas.firebaseapp.com/)
 
 ## Project setup
