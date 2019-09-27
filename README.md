@@ -4,6 +4,8 @@
 
 Demo: [https://happy-thomas.firebaseapp.com/](https://happy-thomas.firebaseapp.com/)
 
+![QR code](./qrcode.png)
+
 ## Project setup
 
 ```bash
